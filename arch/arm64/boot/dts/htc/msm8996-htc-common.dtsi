@@ -55,6 +55,31 @@
 			compatible = "android,firmware";
 			fstab {
 				compatible = "android,fstab";
+				loop {
+					compatible = "android,loop";
+					dev = "/dev/block/platform/soc/624000.ufshc/by-name/system";
+					type = "loop";
+					mnt_flags = "defaults";
+					fsmgr_flags = "wait,slotselect";
+					status = "ok";
+				};
+				oem {
+					compatible = "android,oem";
+					dev = "/dev/block/loop/loop/by-name/oem";
+					type = "ext4";
+					mnt_flags = "ro,barrier=1";
+					fsmgr_flags = "wait";
+					status = "ok";
+				};
+				system {
+					compatible = "android,system";
+					dev = "/dev/block/loop/loop/by-name/system";
+					type = "ext4";
+					mnt_flags = "ro,barrier=1";
+					fsmgr_flags = "wait";
+					status = "ok";
+				};
+
 				vendor {
 					compatible = "android,vendor";
 					dev = "/dev/block/platform/soc/624000.ufshc/by-name/vendor";
